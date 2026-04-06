@@ -32,8 +32,9 @@ function get_db() {
         FOREIGN KEY (project_id) REFERENCES projects(id)
     )");
 
-    // Migration: add custom_name if it doesn't exist yet
+    // Migrations
     try { $db->exec("ALTER TABLE projects ADD COLUMN custom_name TEXT"); } catch (PDOException $e) {}
+    try { $db->exec("ALTER TABLE projects ADD COLUMN is_current INTEGER DEFAULT 0"); } catch (PDOException $e) {}
 
     return $db;
 }
