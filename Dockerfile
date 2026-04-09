@@ -1,7 +1,8 @@
 FROM php:8.2-apache
 
-# Enable mod_rewrite
-RUN a2enmod rewrite
+# Ensure only one MPM is loaded, then enable mod_rewrite
+RUN a2dismod mpm_event mpm_worker 2>/dev/null || true && \
+    a2enmod mpm_prefork rewrite
 
 # Copy app files
 COPY . /var/www/html/
