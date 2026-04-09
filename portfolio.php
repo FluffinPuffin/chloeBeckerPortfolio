@@ -18,6 +18,10 @@
     require 'db.php';
     $db = get_db();
 
+    // Auto-populate from GitHub if database is empty (e.g. after a Railway deploy)
+    $count = (int)$db->query("SELECT COUNT(*) FROM projects")->fetchColumn();
+    if ($count === 0) sync_from_github($db);
+
     $projects = $db->query("SELECT * FROM projects WHERE visible = 1 ORDER BY sort_order ASC, name ASC")->fetchAll(PDO::FETCH_ASSOC);
 
     // Load all cards for visible projects, keyed by project id

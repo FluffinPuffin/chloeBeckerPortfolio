@@ -167,7 +167,7 @@ h1+p {
     font-size: 1.6rem;
 }
 
-.contact-section > p {
+.contact-section>p {
     color: #666;
     font-size: 0.9rem;
     margin-bottom: 2rem;
@@ -251,13 +251,7 @@ h1+p {
     position: relative;
     cursor: pointer;
     border-radius: 10px;
-    background: linear-gradient(170deg,
-            #2d1b69 0%,
-            #1e1e3e 22%,
-            #14233a 48%,
-            #1a2d50 68%,
-            #2a1060 88%,
-            #1e1e3e 100%);
+    background: purple;
     border: 1px solid #5a4fff55;
     transition: transform 0.15s ease, box-shadow 0.15s ease;
     user-select: none;
