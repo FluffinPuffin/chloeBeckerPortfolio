@@ -7,6 +7,8 @@ cat > /tmp/php-fpm.conf << 'FPMEOF'
 error_log = /proc/self/fd/2
 
 [www]
+user = nobody
+group = nobody
 listen = /tmp/php-fpm.sock
 listen.mode = 0666
 pm = dynamic
