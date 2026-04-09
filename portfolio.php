@@ -6,6 +6,7 @@
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <title>Chloe Becker's Portfolio</title>
     <link rel="stylesheet" href="./css/style.css">
+    <script src="./js/script.js"></script>
 </head>
 
 <body>
@@ -33,13 +34,13 @@
 
     if ($projects):
     ?>
-    <div class="packs">
+    <div class="packs" data-opened="<?= htmlspecialchars(json_encode(array_map('strval', $_SESSION['opened_packs'] ?? [])), ENT_QUOTES) ?>">
         <?php foreach ($projects as $p):
             $card_count = count($pack_data[$p['id']] ?? []);
             $display_name = !empty($p['custom_name']) ? $p['custom_name'] : $p['name'];
             $desc = !empty($p['custom_description']) ? $p['custom_description'] : $p['description'];
         ?>
-        <div class="pack" data-project-id="<?= $p['id'] ?>">
+        <div class="pack" data-project-id="<?= $p['id'] ?>" data-cards="<?= htmlspecialchars(json_encode($pack_data[$p['id']] ?? []), ENT_QUOTES) ?>">
             <div class="pack-inner">
                 <h2><?= htmlspecialchars($display_name) ?></h2>
                 <?php if (!empty($desc)): ?>
@@ -81,11 +82,6 @@
         <button class="modal-close-btn" id="modal-close-btn">✕</button>
     </div>
 
-    <script>
-    const PACK_DATA    = <?= json_encode($pack_data) ?>;
-    const OPENED_PACKS = <?= json_encode(array_map('strval', $_SESSION['opened_packs'] ?? [])) ?>;
-    </script>
-    <script src="./js/script.js"></script>
 </body>
 
 </html>

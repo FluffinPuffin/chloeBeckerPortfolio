@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', () => {
+window.addEventListener('load', () => {
     // ── Elements ──────────────────────────────────────────────
     const previewOverlay = document.getElementById('pack-preview-overlay');
     const previewEl = document.getElementById('pack-preview');
@@ -23,6 +23,9 @@ document.addEventListener('DOMContentLoaded', () => {
     let flyingBack = false;
 
     // ── Opened tracking (server session) ──────────────────────
+    const packsEl = document.querySelector('.packs');
+    const openedPacks = JSON.parse(packsEl?.dataset.opened || '[]');
+
     function markOpened(projectId) {
         const body = new FormData();
         body.append('project_id', projectId);
@@ -31,7 +34,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Apply opened class on load
     document.querySelectorAll('.pack').forEach(pack => {
-        if (OPENED_PACKS.includes(pack.dataset.projectId)) {
+        if (openedPacks.includes(pack.dataset.projectId)) {
             pack.classList.add('opened');
         }
     });
@@ -43,7 +46,7 @@ document.addEventListener('DOMContentLoaded', () => {
                 // Already opened — skip preview, go straight to cards
                 currentProjId = pack.dataset.projectId;
                 currentPackEl = pack;
-                cards = PACK_DATA[currentProjId] || [];
+                cards = JSON.parse(pack.dataset.cards || '[]');
                 if (cards.length > 0) openCards(true);
             } else {
                 selectPack(pack);
@@ -64,7 +67,7 @@ document.addEventListener('DOMContentLoaded', () => {
         fromTransform = `translate(${dx}px, ${dy}px) scale(${scale})`;
         currentPackEl = packEl;
         currentProjId = packEl.dataset.projectId;
-        cards = PACK_DATA[currentProjId] || [];
+        cards = JSON.parse(packEl.dataset.cards || '[]');
 
         previewName.textContent = packEl.querySelector('h2').textContent;
         previewDesc.textContent = packEl.querySelector('.pack-desc')?.textContent || '';
