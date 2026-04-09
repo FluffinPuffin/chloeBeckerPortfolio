@@ -4,6 +4,7 @@
 
 <head>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Chloe Becker's Portfolio</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
@@ -55,7 +56,7 @@
 
     <!-- Pack preview overlay (flies from grid to center) -->
     <div id="pack-preview-overlay">
-        <div id="pack-preview">
+        <div id="pack-preview" class="pack">
             <div class="pack-inner">
                 <h2 id="preview-name"></h2>
                 <p id="preview-desc" class="pack-desc"></p>

@@ -52,6 +52,7 @@ nav ul li a {
     text-decoration: none;
     color: #999;
     font-size: 0.9rem;
+    font-weight: 600;
 }
 
 nav ul li a:hover {
@@ -60,7 +61,15 @@ nav ul li a:hover {
 
 nav ul li a.active {
     color: #fff;
-    font-weight: 600;
+}
+
+/* ── Section label (featured pack, etc.) ── */
+.packs-label {
+    font-size: 1rem;
+    text-transform: uppercase;
+    letter-spacing: 0.1em;
+    color: #555;
+    padding: 2rem 2rem 0;
 }
 
 /* ── Current Projects section ── */
@@ -153,6 +162,7 @@ h1+p {
     color: #888;
     font-size: 0.95rem;
     line-height: 1.7;
+    padding: 0;
 }
 
 /* ── Contact page ── */
@@ -171,105 +181,69 @@ h1+p {
     color: #666;
     font-size: 0.9rem;
     margin-bottom: 2rem;
+    padding: 0;
 }
 
-.contact-form {
+.contact-links {
     display: flex;
     flex-direction: column;
-    gap: 1.2rem;
+    gap: 0.6rem;
 }
 
-.form-row {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 1rem;
-}
-
-.form-field {
+.contact-links a {
     display: flex;
-    flex-direction: column;
-    gap: 0.35rem;
-}
-
-.form-field label {
-    font-size: 0.8rem;
-    color: #777;
-    letter-spacing: 0.04em;
-}
-
-.form-field input,
-.form-field textarea {
+    align-items: center;
+    justify-content: space-between;
     background: #1a1a1a;
     border: 1px solid #2a2a2a;
-    border-radius: 6px;
-    color: #eee;
-    font-family: inherit;
+    border-radius: 8px;
+    color: #ccc;
     font-size: 0.9rem;
-    padding: 0.6rem 0.8rem;
-    transition: border-color 0.15s ease;
-    outline: none;
+    padding: 0.8rem 1.1rem;
+    text-decoration: none;
+    transition: border-color 0.15s ease, color 0.15s ease, background 0.15s ease;
     width: 100%;
+    max-width: 320px;
 }
 
-.form-field input:focus,
-.form-field textarea:focus {
-    border-color: #5a4fff88;
+.contact-links a::after {
+    content: '↗';
+    font-size: 0.8rem;
+    color: #555;
+    transition: color 0.15s ease;
 }
 
-.form-field textarea {
-    resize: vertical;
-    min-height: 120px;
+.contact-links a[href^="mailto"]::after {
+    content: '→';
 }
 
-.contact-submit {
-    background: #5a4fff;
+.contact-links a:hover {
+    border-color: #5a4fff;
     color: #fff;
-    border: none;
-    border-radius: 6px;
-    padding: 0.65rem 1.5rem;
-    font-size: 0.9rem;
-    font-family: inherit;
-    cursor: pointer;
-    align-self: flex-start;
-    transition: background 0.15s ease;
+    background: #1e1e2e;
 }
 
-.contact-submit:hover {
-    background: #7b6fff;
+.contact-links a:hover::after {
+    color: #a78bfa;
 }
 
 /* ── Packs grid ── */
 .packs {
     display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(140px, 160px));
+    grid-template-columns: repeat(auto-fill, minmax(150px, 170px));
     gap: 1.5rem;
     padding: 1rem 2rem 3rem;
     justify-content: center;
 }
 
 .pack {
-    position: relative;
     cursor: pointer;
     border-radius: 10px;
-    background: purple;
+    background: #800080;
     border: 1px solid #5a4fff55;
     transition: transform 0.15s ease, box-shadow 0.15s ease;
     user-select: none;
     overflow: hidden;
-}
-
-/* Top seal band — only visible on unopened packs */
-.pack::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 22%;
-    background: linear-gradient(180deg, #5a4fff44 0%, #5a4fff11 70%, transparent 100%);
-    border-bottom: 1px solid #5a4fff44;
-    pointer-events: none;
-    z-index: 1;
 }
 
 .pack:hover {
@@ -278,7 +252,6 @@ h1+p {
     border-color: #5a4fff;
 }
 
-/* Opened pack: torn top instead of "Opened" overlay */
 .pack.opened {
     clip-path: polygon(0% 13%, 3% 10%, 6% 15%, 9% 9%, 12% 13%,
             16% 8%, 19% 12%, 23% 9%, 26% 14%, 30% 8%,
@@ -292,24 +265,23 @@ h1+p {
 }
 
 .pack-inner {
-    padding: 1rem;
-    padding-top: 3.5rem;
+    padding: 1.2rem;
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.6rem;
     min-height: 220px;
 }
 
 .pack-inner h2 {
-    font-size: 0.88rem;
+    font-size: 0.95rem;
     font-weight: 700;
     color: #fff;
-    line-height: 1.3;
+    line-height: 1.5;
 }
 
 .pack-desc {
-    font-size: 0.78rem;
-    color: #999;
+    font-size: 0.85rem;
+    color: #ddd;
     line-height: 1.5;
     flex: 1;
 }
@@ -331,45 +303,15 @@ h1+p {
 }
 
 #pack-preview {
-    width: 200px;
-    cursor: pointer;
-    border-radius: 10px;
-    background: linear-gradient(170deg,
-            #2d1b69 0%,
-            #1e1e3e 22%,
-            #14233a 48%,
-            #1a2d50 68%,
-            #2a1060 88%,
-            #1e1e3e 100%);
-    border: 2px solid #5a4fff;
+    width: 170px;
     box-shadow: 0 0 40px rgba(90, 79, 255, 0.4);
     transition: transform 0.4s cubic-bezier(0.22, 1, 0.36, 1);
     will-change: transform;
-    overflow: hidden;
-    position: relative;
-}
-
-#pack-preview::before {
-    content: '';
-    position: absolute;
-    top: 0;
-    left: 0;
-    right: 0;
-    height: 3rem;
-    background: linear-gradient(180deg, #5a4fff55 0%, #5a4fff11 70%, transparent 100%);
-    border-bottom: 1px solid #5a4fff66;
-    pointer-events: none;
-    z-index: 1;
 }
 
 #pack-preview:hover {
     box-shadow: 0 0 60px rgba(90, 79, 255, 0.6);
-}
-
-#pack-preview .pack-inner {
-    min-height: 280px;
-    padding: 1rem;
-    padding-top: 3.5rem;
+    transform: none;
 }
 
 /* ── Modal overlay ── */
@@ -549,6 +491,13 @@ h1+p {
     color: #bbb;
     line-height: 1.6;
     flex: 1;
+    overflow-wrap: break-word;
+    word-break: break-all;
+}
+
+.modal-card-body a {
+    color: #a78bfa;
+    text-decoration: underline;
 }
 
 /* ── All-cards spread view ── */
@@ -587,5 +536,66 @@ h1+p {
     to {
         opacity: 1;
         transform: translateY(0) scale(1);
+    }
+}
+
+/* ── Mobile ── */
+@media (max-width: 600px) {
+    .site-header {
+        padding: 0 1rem;
+    }
+
+    nav ul {
+        gap: 0.75rem;
+    }
+
+    nav ul li a {
+        font-size: 0.8rem;
+    }
+
+    h1 {
+        padding: 1.5rem 1rem 0.5rem;
+        font-size: 1.4rem;
+    }
+
+    h1+p {
+        padding: 0 1rem 1rem;
+    }
+
+    .packs {
+        padding: 0.75rem 1rem 2rem;
+        gap: 1rem;
+    }
+
+    .current-projects {
+        padding: 1.5rem 1rem 2rem;
+    }
+
+    .bio-section {
+        flex-direction: column;
+        align-items: center;
+        text-align: center;
+        gap: 1.2rem;
+        margin: 1.5rem auto;
+        padding: 0 1.2rem;
+    }
+
+    .bio-photo {
+        width: 100px;
+        height: 100px;
+    }
+
+    .contact-section {
+        margin: 1.5rem auto;
+        padding: 0 1.2rem;
+    }
+
+    .modal-card {
+        width: min(260px, 85vw);
+    }
+
+    .card-spread-wrap .modal-card {
+        width: 150px;
+        min-height: 240px;
     }
 }

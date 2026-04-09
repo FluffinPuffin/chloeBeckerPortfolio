@@ -3,6 +3,7 @@
 
 <head>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title> Chloe Becker's Portfolio</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
@@ -14,7 +15,7 @@
         <img class="bio-photo" src="./images/chloe.jpg" alt="Chloe Becker">
         <div class="bio-text">
             <h1>Chloe Becker</h1>
-            <p>I am a software engineer with a passion for creating intuitive and user-friendly applications. I have experience in a variety of programming languages and frameworks, and I am always eager to learn new technologies. In my free time, I enjoy hiking, cooking, and spending time with my family.</p>
+            <p>I am a senior at the University of Central Florida majoring  Digital Media: Web and Interactive Media and minoring in Computer Science.</p>
         </div>
     </div>
 

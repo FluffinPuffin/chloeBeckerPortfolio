@@ -1,4 +1,5 @@
 <?php
+require 'admin_auth.php';
 require 'db.php';
 
 $db = get_db();

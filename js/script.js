@@ -14,6 +14,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const cardBody = document.getElementById('modal-card-body');
     const closeBtn = document.getElementById('modal-close-btn');
 
+    // ── Helpers ───────────────────────────────────────────────
+    function linkify(text) {
+        const escaped = text.replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;');
+        return escaped.replace(/https?:\/\/[^\s<>"]+/g, url => `<a href="${url}" target="_blank" rel="noopener noreferrer">${url}</a>`);
+    }
+
     // ── State ─────────────────────────────────────────────────
     let cards = [];
     let currentIndex = 0;
@@ -30,14 +36,14 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     // Apply opened class on load
-    document.querySelectorAll('.pack').forEach(pack => {
+    document.querySelectorAll('.pack:not(#pack-preview)').forEach(pack => {
         if (OPENED_PACKS.includes(pack.dataset.projectId)) {
             pack.classList.add('opened');
         }
     });
 
     // ── Pack grid clicks ──────────────────────────────────────
-    document.querySelectorAll('.pack').forEach(pack => {
+    document.querySelectorAll('.pack:not(#pack-preview)').forEach(pack => {
         pack.addEventListener('click', () => {
             if (pack.classList.contains('opened')) {
                 // Already opened — skip preview, go straight to cards
@@ -55,13 +61,13 @@ document.addEventListener('DOMContentLoaded', () => {
         if (flyingBack) return;
 
         const rect = packEl.getBoundingClientRect();
+        previewEl.style.width = rect.width + 'px';
         const cx = window.innerWidth / 2;
         const cy = window.innerHeight / 2;
         const dx = (rect.left + rect.width / 2) - cx;
         const dy = (rect.top + rect.height / 2) - cy;
-        const scale = rect.width / 200;
 
-        fromTransform = `translate(${dx}px, ${dy}px) scale(${scale})`;
+        fromTransform = `translate(${dx}px, ${dy}px)`;
         currentPackEl = packEl;
         currentProjId = packEl.dataset.projectId;
         cards = PACK_DATA[currentProjId] || [];
@@ -148,7 +154,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
             const b = document.createElement('div');
             b.className = 'modal-card-body';
-            b.textContent = card.body || '';
+            b.innerHTML = linkify(card.body || '');
 
             wrap.append(r, t, b);
             spreadWrap.appendChild(wrap);
@@ -208,7 +214,7 @@ document.addEventListener('DOMContentLoaded', () => {
 
         cardRarity.textContent = rarity.charAt(0).toUpperCase() + rarity.slice(1);
         cardTitle.textContent = card.title || '';
-        cardBody.textContent = card.body || '';
+        cardBody.innerHTML = linkify(card.body || '');
 
         // Update stack depth indicators
         const remaining = cards.length - 1 - index;
