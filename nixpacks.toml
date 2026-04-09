@@ -2,4 +2,4 @@
 builder = "nixpacks"
 
 [deploy]
-preDeployCommand = "sed -i '/location \\/ {/i\\    location ~* \\.(db|sh|toml|env|json|sql|log|gitignore)$ { deny all; return 404; }' /etc/nginx/conf.d/default.conf"
+startCommand = "bash /app/start.sh"
