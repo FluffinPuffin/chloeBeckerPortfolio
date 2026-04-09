@@ -2,4 +2,4 @@
 builder = "nixpacks"
 
 [deploy]
-startCommand = "php -r \"$f='/etc/nginx/conf.d/default.conf'; $c=file_get_contents($f); $c=str_replace('location / {', 'location ~* \\\\.db$ { deny all; return 404; }\\n    location / {', $c); file_put_contents($f,$c);\" && php-fpm -D && nginx -g 'daemon off;'"
+startCommand = "bash /app/start.sh"
