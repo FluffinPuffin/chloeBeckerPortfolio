@@ -1,1 +1,5 @@
-
+.env
+Dockerfile
+docker-compose.yml
+admin.php
+admin_cards.php
