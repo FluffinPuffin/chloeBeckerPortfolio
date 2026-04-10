@@ -52,6 +52,21 @@ if (isset($_POST['sync'])) {
     }
 }
 
+// Add custom project
+if (isset($_POST['add_project'])) {
+    $stmt = $db->prepare("
+        INSERT INTO projects (name, custom_name, description, custom_description, homepage, language, visible, sort_order, created_at, updated_at)
+        VALUES (:name, :name, :description, :description, :homepage, :language, 1, 0, datetime('now'), datetime('now'))
+    ");
+    $stmt->execute([
+        ':name'        => trim($_POST['new_name']),
+        ':description' => trim($_POST['new_description']),
+        ':homepage'    => trim($_POST['new_homepage']),
+        ':language'    => trim($_POST['new_language']),
+    ]);
+    $message = 'Custom project added.';
+}
+
 // Save edits
 if (isset($_POST['save'])) {
     $stmt = $db->prepare("
@@ -103,6 +118,17 @@ $projects = $db->query("
             <button name="sync" value="1">Sync from GitHub</button>
         </form>
     </div>
+
+    <details style="margin: 1rem 0">
+        <summary style="cursor:pointer; font-weight:bold">+ Add Custom Project</summary>
+        <form method="post" style="margin-top:.75rem; display:grid; gap:.5rem; max-width:600px">
+            <input type="text" name="new_name" placeholder="Project name *" required>
+            <textarea name="new_description" placeholder="Description"></textarea>
+            <input type="text" name="new_homepage" placeholder="Homepage / demo URL">
+            <input type="text" name="new_language" placeholder="Language / tech stack">
+            <button type="submit" name="add_project" value="1">Add Project</button>
+        </form>
+    </details>
 
     <?php if (empty($projects)): ?>
         <p>No projects yet. Click "Sync from GitHub" to import your repos.</p>

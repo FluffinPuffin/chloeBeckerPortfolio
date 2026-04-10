@@ -35,9 +35,9 @@
         $feat_name = !empty($featured['custom_name']) ? $featured['custom_name'] : $featured['name'];
         $feat_desc = !empty($featured['custom_description']) ? $featured['custom_description'] : $featured['description'];
     ?>
-    <p class="packs-label">Featured Pack</p>
-    <div class="packs">
-        <div class="pack" data-project-id="<?= $featured['id'] ?>">
+    <p class="packs-label">Random Project Of the Day</p>
+    <div class="packs" data-opened="<?= htmlspecialchars(json_encode(array_map('strval', $_SESSION['opened_packs'] ?? [])), ENT_QUOTES) ?>">
+        <div class="pack" data-project-id="<?= $featured['id'] ?>" data-cards="<?= htmlspecialchars(json_encode($featured_pack_data[$featured['id']] ?? []), ENT_QUOTES) ?>">
             <div class="pack-inner">
                 <h2><?= htmlspecialchars($feat_name) ?></h2>
                 <?php if (!empty($feat_desc)): ?>
@@ -69,6 +69,68 @@
         </div>
     </section>
     <?php endif; ?>
+
+    <section class="experience-section">
+        <h2 class="section-label">Experience</h2>
+        <div class="experience-list">
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <span class="experience-title">Tutor</span>
+                        <span class="experience-company">University of Central Florida</span>
+                    </div>
+                    <span class="experience-dates">Oct. 2025 – Present</span>
+                </div>
+                <ul class="experience-desc">
+                    <li>Provide one-on-one and group tutoring in computer science and digital media coursework.</li>
+                    <li>Develop customized learning strategies to improve student retention and problem-solving skills.</li>
+                    <li>Communicate student progress and learning challenges with faculty to optimize academic support.</li>
+                </ul>
+            </div>
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <span class="experience-title">Software Engineering Intern</span>
+                        <span class="experience-company">BNY</span>
+                    </div>
+                    <span class="experience-dates">June 2025 – Aug. 2025</span>
+                </div>
+                <ul class="experience-desc">
+                    <li>Contributed to backend logic and data processing workflows for in-house projects.</li>
+                    <li>Improved internal dashboard interface to enhance usability and performance.</li>
+                    <li>Worked in an Agile environment with cross-functional engineering teams.</li>
+                </ul>
+            </div>
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <span class="experience-title">Teaching Assistant</span>
+                        <span class="experience-company">University of Central Florida</span>
+                    </div>
+                    <span class="experience-dates">Jan. 2025 – May 2025</span>
+                </div>
+                <ul class="experience-desc">
+                    <li>Assisted in teaching backend web development concepts including server-side logic and database integration.</li>
+                    <li>Supported students during debugging sessions, improving code comprehension and implementation skills.</li>
+                    <li>Strengthened communication and technical mentoring abilities.</li>
+                </ul>
+            </div>
+            <div class="experience-item">
+                <div class="experience-header">
+                    <div>
+                        <span class="experience-title">Esports Team Leader</span>
+                        <span class="experience-company">University of Central Florida Esports</span>
+                    </div>
+                    <span class="experience-dates">Jan. 2024 – Apr. 2025</span>
+                </div>
+                <ul class="experience-desc">
+                    <li>Led team operations, strategy planning, and communication for competitive collegiate events.</li>
+                    <li>Coordinated team logistics while balancing academic responsibilities.</li>
+                    <li>Developed leadership and conflict resolution skills in high-pressure environments.</li>
+                </ul>
+            </div>
+        </div>
+    </section>
 
     <!-- Pack preview overlay -->
     <div id="pack-preview-overlay">
