@@ -15,7 +15,7 @@
         <img class="bio-photo" src="./images/chloe.jpg" alt="Chloe Becker">
         <div class="bio-text">
             <h1>Chloe Becker</h1>
-            <p>I am a senior at the University of Central Florida majoring  Digital Media: Web and Interactive Media and minoring in Computer Science.</p>
+            <p>I am a senior at the University of Central Florida majoring  Digital Media: Web and Interactive Media and minoring in Computer Science. I love building small projects that make my life easier. Otherwise I like playing video games and spending time with friends.</p>
         </div>
     </div>
 
