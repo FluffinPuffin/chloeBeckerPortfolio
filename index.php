@@ -25,10 +25,15 @@
             <span class="skill-tag">PHP</span>
             <span class="skill-tag">JavaScript</span>
             <span class="skill-tag">Python</span>
-            <span class="skill-tag">SQL</span>
-            <span class="skill-tag">Docker</span>
-            <span class="skill-tag">Git</span>
             <span class="skill-tag">HTML / CSS</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Java</span>
+            <span class="skill-tag">C</span>
+            <span class="skill-tag">React</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">SQLite</span>
+            <span class="skill-tag">Linux</span>
         </div>
     </section>
 

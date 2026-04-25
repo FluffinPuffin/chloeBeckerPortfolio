@@ -29,6 +29,10 @@
                     <span class="skill-tag">JavaScript</span>
                     <span class="skill-tag">Python</span>
                     <span class="skill-tag">HTML / CSS</span>
+                    <span class="skill-tag">SQL</span>
+                    <span class="skill-tag">Java</span>
+                    <span class="skill-tag">C</span>
+                    <span class="skill-tag">React</span>
                 </div>
             </div>
             <div class="skills-group">
