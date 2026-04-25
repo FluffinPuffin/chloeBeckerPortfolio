@@ -5,14 +5,32 @@
 <head>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Chloe Becker's Portfolio</title>
+    <title>Chloe Becker — Portfolio</title>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
 <body>
     <?php require 'header.php'; ?>
-    <h1>Home</h1>
-    <p>Welcome to my portfolio! Here you can find information about my background, skills, and experience as a software engineer. Feel free to explore the different sections and contact me if you have any questions or would like to work together.</p>
+
+    <section class="hero">
+        <div class="hero-badge">Open to opportunities · Class of 2026</div>
+        <h1>Chloe Becker</h1>
+        <p class="hero-role">Software Engineer &amp; Digital Media Student</p>
+        <p>UCF senior building web apps, backend systems, and interactive tools. I care about making things that are clean, functional, and actually useful.</p>
+        <div class="hero-actions">
+            <a href="portfolio.php" class="btn btn-primary">View Portfolio</a>
+            <a href="contact.php" class="btn btn-secondary">Get in Touch</a>
+        </div>
+        <div class="skill-tags">
+            <span class="skill-tag">PHP</span>
+            <span class="skill-tag">JavaScript</span>
+            <span class="skill-tag">Python</span>
+            <span class="skill-tag">SQL</span>
+            <span class="skill-tag">Docker</span>
+            <span class="skill-tag">Git</span>
+            <span class="skill-tag">HTML / CSS</span>
+        </div>
+    </section>
 
     <?php
     require 'db.php';
@@ -35,7 +53,7 @@
         $feat_name = !empty($featured['custom_name']) ? $featured['custom_name'] : $featured['name'];
         $feat_desc = !empty($featured['custom_description']) ? $featured['custom_description'] : $featured['description'];
     ?>
-    <p class="packs-label">Random Project Of the Day</p>
+    <p class="packs-label">Random Project of the Day</p>
     <div class="packs" data-opened="<?= htmlspecialchars(json_encode(array_map('strval', $_SESSION['opened_packs'] ?? [])), ENT_QUOTES) ?>">
         <div class="pack" data-project-id="<?= $featured['id'] ?>" data-cards="<?= htmlspecialchars(json_encode($featured_pack_data[$featured['id']] ?? []), ENT_QUOTES) ?>">
             <div class="pack-inner">
@@ -163,6 +181,8 @@
     const OPENED_PACKS = <?= json_encode(array_map('strval', $_SESSION['opened_packs'] ?? [])) ?>;
     </script>
     <script src="./js/script.js"></script>
+
+    <?php require 'footer.php'; ?>
 </body>
 
 </html>

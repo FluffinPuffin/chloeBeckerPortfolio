@@ -5,15 +5,17 @@
 <head>
     <meta content="text/html;charset=utf-8" http-equiv="Content-Type">
     <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Chloe Becker's Portfolio</title>
+    <title>Chloe Becker — Portfolio</title>
     <link rel="stylesheet" href="./css/style.css">
-    <script src="./js/script.js"></script>
 </head>
 
 <body>
     <?php require 'header.php'; ?>
-    <h1>My Portfolio</h1>
-    <p>Click a pack to open it.</p>
+
+    <div class="page-hero">
+        <h1>My Portfolio</h1>
+        <p>Each pack is a project — click to open it and explore the cards inside.</p>
+    </div>
 
     <?php
     require 'db.php';
@@ -52,7 +54,7 @@
         <?php endforeach; ?>
     </div>
     <?php else: ?>
-    <p>No projects to show yet. <a href="https://github.com/FluffinPuffin" target="_blank" rel="noopener noreferrer">View on GitHub</a></p>
+    <p style="padding: 2rem; color: var(--text-muted);">No projects to show yet. <a href="https://github.com/FluffinPuffin" target="_blank" rel="noopener noreferrer">View on GitHub</a></p>
     <?php endif; ?>
 
     <!-- Pack preview overlay (flies from grid to center) -->
@@ -70,7 +72,6 @@
 
     <!-- Card opening modal -->
     <div class="modal-overlay" id="modal" aria-hidden="true">
-        <!-- One-at-a-time view (first open) -->
         <div class="card-stack-wrap" id="card-stack-wrap">
             <div class="modal-card" id="modal-card">
                 <div class="modal-card-rarity" id="modal-card-rarity"></div>
@@ -78,11 +79,13 @@
                 <div class="modal-card-body" id="modal-card-body"></div>
             </div>
         </div>
-        <!-- All-cards-spread view (re-open or end of pack) -->
         <div class="card-spread-wrap" id="card-spread-wrap"></div>
         <button class="modal-close-btn" id="modal-close-btn">✕</button>
     </div>
 
+    <script src="./js/script.js"></script>
+
+    <?php require 'footer.php'; ?>
 </body>
 
 </html>
